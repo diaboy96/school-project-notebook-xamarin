@@ -1,35 +1,58 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Xamarin.Forms;
+using NotesApp.Models;
 
 namespace NotesApp
 {
-    public partial class MainPage : ContentPage
+    public partial class NotesPage : ContentPage
     {
-        string _fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "notes.txt");
-
-        public MainPage()
+        public NotesPage()
         {
             InitializeComponent();
-
-            if (File.Exists(_fileName))
-            {
-                editor.Text = File.ReadAllText(_fileName);
-            }
         }
 
-        void OnSaveButtonClicked(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
-            File.WriteAllText(_fileName, editor.Text);
+            base.OnAppearing();
+
+            var notes = new List<Note>();
+
+            var files = Directory.EnumerateFiles(App.FolderPath, "*.notes.txt");
+            foreach (var filename in files)
+            {
+                notes.Add(new Note
+                {
+                    Filename = filename,
+                    Text = File.ReadAllText(filename),
+                    Date = File.GetCreationTime(filename)
+                });
+            }
+
+            listView.ItemsSource = notes
+                .OrderBy(d => d.Date)
+                .ToList();
         }
 
-        void OnDeleteButtonClicked(object sender, EventArgs e)
+        async void OnNoteAddedClicked(object sender, EventArgs e)
         {
-            if (File.Exists(_fileName))
+            await Navigation.PushAsync(new NoteEntryPage
             {
-                File.Delete(_fileName);
+                BindingContext = new Note()
+            });
+        }
+
+        async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem != null)
+            {
+                await Navigation.PushAsync(new NoteEntryPage
+                {
+                    BindingContext = e.SelectedItem as Note
+                });
             }
-            editor.Text = string.Empty;
         }
     }
 }
