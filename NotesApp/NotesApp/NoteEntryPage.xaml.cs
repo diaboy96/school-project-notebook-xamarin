@@ -15,6 +15,13 @@ namespace NotesApp
         async void OnSaveButtonClicked(object sender, EventArgs e)
         {
             var note = (Note)BindingContext;
+
+            // if the note is created right now
+            if (note.ID == 0)
+            {
+                note.DateOfCreation = DateTime.UtcNow;
+            }
+
             note.Date = DateTime.UtcNow;
             await App.Database.SaveNoteAsync(note);
             await Navigation.PopAsync();

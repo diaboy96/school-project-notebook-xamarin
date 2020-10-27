@@ -21,6 +21,9 @@
     </ContentPage.Resources>
 
     <StackLayout Margin="{StaticResource PageMargin}">
+        <Editor Placeholder="Název poznámky"
+                Text="{Binding Name}"
+                HeightRequest="40" />
         <Editor Placeholder="Text poznámky..."
                 Text="{Binding Text}"
                 HeightRequest="100" />
