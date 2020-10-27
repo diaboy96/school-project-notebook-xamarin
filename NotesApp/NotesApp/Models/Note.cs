@@ -3,7 +3,7 @@ using SQLite;
 
 namespace NotesApp.Models
 {
-    class Note
+    public class Note
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
