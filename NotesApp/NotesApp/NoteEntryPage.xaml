@@ -21,9 +21,25 @@
     </ContentPage.Resources>
 
     <StackLayout Margin="{StaticResource PageMargin}">
+        <Label Text="Název poznámky:" FontAttributes="Bold">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding ID}" Value="0">
+                    <Setter Property="Text" Value="" />
+                    <Setter Property="HeightRequest" Value="0" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
         <Editor Placeholder="Název poznámky"
                 Text="{Binding Name}"
                 HeightRequest="40" />
+        <Label Text="Text poznámky:" FontAttributes="Bold">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding ID}" Value="0">
+                    <Setter Property="Text" Value="" />
+                    <Setter Property="HeightRequest" Value="0" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
         <Editor Placeholder="Text poznámky..."
                 Text="{Binding Text}"
                 HeightRequest="100" />
@@ -32,16 +48,40 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Text="Save"
+            <Button Text="Uložit"
                     Clicked="OnSaveButtonClicked" />
             <Button Grid.Column="1"
-                    Text="Delete"
+                    Text="Vymazat"
                     Clicked="OnDeleteButtonClicked" />
         </Grid>
-        <Label Text="Vytvořeno:" FontAttributes="Bold"></Label>
-        <Label Text="{Binding DateOfCreation}"></Label>
-        <Label Text="Naposledy upraveno:"></Label>
-        <Label Text="{Binding Date}"></Label>
+        <Label Text="Vytvořeno:" FontAttributes="Bold">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding ID}" Value="0">
+                    <Setter Property="Text" Value="" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+        <Label Text="{Binding DateOfCreation}">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding ID}" Value="0">
+                    <Setter Property="Text" Value="" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+        <Label Text="Naposledy upraveno:" FontAttributes="Bold">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding ID}" Value="0">
+                    <Setter Property="Text" Value="" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
+        <Label Text="{Binding Date}">
+            <Label.Triggers>
+                <DataTrigger TargetType="Label" Binding="{Binding ID}" Value="0">
+                    <Setter Property="Text" Value="" />
+                </DataTrigger>
+            </Label.Triggers>
+        </Label>
     </StackLayout>
 
 </ContentPage>
