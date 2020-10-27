@@ -8,7 +8,6 @@ namespace NotesApp
 {
     public partial class App : Application
     {
-        public static string FolderPath { get; private set; }
         static NoteDatabase database;
 
         public static NoteDatabase Database
@@ -26,7 +25,6 @@ namespace NotesApp
         public App()
         {
             InitializeComponent();
-            FolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData));
             MainPage = new NavigationPage(new NotesPage());
         }
 

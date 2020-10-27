@@ -13,29 +13,7 @@ namespace NotesApp
         {
             InitializeComponent();
         }
-        /*
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
 
-            var notes = new List<Note>();
-
-            var files = Directory.EnumerateFiles(App.FolderPath, "*.notes.txt");
-            foreach (var filename in files)
-            {
-                notes.Add(new Note
-                {
-                    Filename = filename,
-                    Text = File.ReadAllText(filename),
-                    Date = File.GetCreationTime(filename)
-                });
-            }
-
-            listView.ItemsSource = notes
-                .OrderBy(d => d.Date)
-                .ToList();
-        }
-        */
         protected override async void OnAppearing()
         {
             base.OnAppearing();
