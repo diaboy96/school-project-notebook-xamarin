@@ -13,7 +13,7 @@ namespace NotesApp
         {
             InitializeComponent();
         }
-
+        /*
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -34,6 +34,13 @@ namespace NotesApp
             listView.ItemsSource = notes
                 .OrderBy(d => d.Date)
                 .ToList();
+        }
+        */
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            listView.ItemsSource = await App.Database.GetNotesAsync();
         }
 
         async void OnNoteAddedClicked(object sender, EventArgs e)
