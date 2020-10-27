@@ -38,6 +38,10 @@
                     Text="Delete"
                     Clicked="OnDeleteButtonClicked" />
         </Grid>
+        <Label Text="Vytvořeno:" FontAttributes="Bold"></Label>
+        <Label Text="{Binding DateOfCreation}"></Label>
+        <Label Text="Naposledy upraveno:"></Label>
+        <Label Text="{Binding Date}"></Label>
     </StackLayout>
 
 </ContentPage>
